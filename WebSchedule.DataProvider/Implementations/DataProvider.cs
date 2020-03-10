@@ -40,7 +40,14 @@ namespace WebSchedule.Infrastructure.Implementations
             _connectionString = connectionString.ConnectionString;
         }
 
-        public DataProvider() { }
+        public DataProvider()
+        {
+        }
+
+        public DataProvider(DbContextOptions options)
+            :base(options)
+        {
+        }
 
         #endregion
 
@@ -82,9 +89,7 @@ namespace WebSchedule.Infrastructure.Implementations
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-#if DEBUG
             optionsBuilder.UseSqlServer(_connectionString);
-#endif
         }
 
         #endregion

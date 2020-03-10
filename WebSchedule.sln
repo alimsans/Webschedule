@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSchedule.BusinessLayer",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSchedule.DependenciesResolver", "WebSchedule.DependenciesResolver\WebSchedule.DependenciesResolver.csproj", "{D4302D3E-661F-4891-A55E-CA2622E3DE1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSchedule.DesignTimeTooling", "WebSchedule.DesignTimeTooling\WebSchedule.DesignTimeTooling.csproj", "{27C3324A-A1B5-47E4-9C4F-AC77EBF6C3AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D4302D3E-661F-4891-A55E-CA2622E3DE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4302D3E-661F-4891-A55E-CA2622E3DE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4302D3E-661F-4891-A55E-CA2622E3DE1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C3324A-A1B5-47E4-9C4F-AC77EBF6C3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C3324A-A1B5-47E4-9C4F-AC77EBF6C3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C3324A-A1B5-47E4-9C4F-AC77EBF6C3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C3324A-A1B5-47E4-9C4F-AC77EBF6C3AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

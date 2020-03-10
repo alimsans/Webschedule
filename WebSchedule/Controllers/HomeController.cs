@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebSchedule.BusinessLayer.Services.Interfaces;
 
@@ -29,6 +30,11 @@ namespace WebSchedule.API.Controllers
         public async Task<IActionResult> Index()
         {
             var users = await _userService.GetAllUsersAsync();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
 
             return Ok(users);
         }

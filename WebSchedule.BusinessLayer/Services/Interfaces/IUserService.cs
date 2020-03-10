@@ -6,6 +6,6 @@ namespace WebSchedule.BusinessLayer.Services.Interfaces
 {
     public interface IUserService
     {
-        public Task<ICollection<UserDto>> GetAllUsersAsync();
+        Task<ICollection<UserDto>> GetAllUsersAsync();
     }
 }
