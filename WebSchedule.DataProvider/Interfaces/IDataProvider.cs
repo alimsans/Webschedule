@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebSchedule.DataProvider.Interfaces
+namespace WebSchedule.Infrastructure.Interfaces
 {
-    public interface IDataProvider
+    public interface IDataProvider : IDisposable
     {
         IQueryable<T> Set<T>() where T : class;
         Task AddAsync<T>(T entity) where T : class;

@@ -1,5 +1,5 @@
 ﻿
-namespace WebSchedule.DataProvider.Interfaces
+namespace WebSchedule.Infrastructure.Interfaces
 {
     public interface IConnectionStringProvider
     {

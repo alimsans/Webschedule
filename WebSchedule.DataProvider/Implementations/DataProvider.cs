@@ -1,14 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WebSchedule.DataProvider.Interfaces;
-using WebSchedule.Entities;
+using WebSchedule.Infrastructure.Entities;
+using WebSchedule.Infrastructure.Interfaces;
 
-namespace WebSchedule.DataProvider.Implementations
+namespace WebSchedule.Infrastructure.Implementations
 {
     public class DataProvider : DbContext, IDataProvider
     {
+        public override void Dispose()
+        {
+            Console.WriteLine("kek");
+        }
+
         #region Dependecies
 
         private readonly string _connectionString;
@@ -33,6 +39,8 @@ namespace WebSchedule.DataProvider.Implementations
         {
             _connectionString = connectionString.ConnectionString;
         }
+
+        public DataProvider() { }
 
         #endregion
 
@@ -74,7 +82,9 @@ namespace WebSchedule.DataProvider.Implementations
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+#if DEBUG
             optionsBuilder.UseSqlServer(_connectionString);
+#endif
         }
 
         #endregion
