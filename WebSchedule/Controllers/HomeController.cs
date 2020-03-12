@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebSchedule.BusinessLayer.Models;
 using WebSchedule.BusinessLayer.Services.Interfaces;
+using WebSchedule.Infrastructure.Entities;
 
 namespace WebSchedule.API.Controllers
 {
@@ -27,6 +30,7 @@ namespace WebSchedule.API.Controllers
         #region Controllers
 
         [HttpGet]
+        [Authorize(Roles = nameof(RightsDto.None))]
         public async Task<IActionResult> Index()
         {
             var users = await _userService.GetAllUsersAsync();

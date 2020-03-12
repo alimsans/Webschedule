@@ -2,5 +2,6 @@
 {
     public enum RightsDto
     {
+        None
     }
 }

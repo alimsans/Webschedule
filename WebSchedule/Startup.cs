@@ -1,11 +1,12 @@
 using Autofac;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebSchedule.DependenciesResolver;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using WebSchedule.API.Middleware;
 
 namespace WebSchedule.API
 {
@@ -18,16 +19,23 @@ namespace WebSchedule.API
             Configuration = configuration;
         }
 
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddRouting();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Authorize";
+                    options.AccessDeniedPath = "/Account/Forbidden";
+                    options.EventsType = typeof(CookieAuthenticationMiddleware);
+                });
+
+            services.AddScoped<CookieAuthenticationMiddleware>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -35,13 +43,14 @@ namespace WebSchedule.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCookiePolicy();
+
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
-            {
-                //endpoints.MapControllers();
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            });
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

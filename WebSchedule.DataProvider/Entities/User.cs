@@ -9,6 +9,10 @@ namespace WebSchedule.Infrastructure.Entities
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
         public virtual Role Role { get; set; }
 
         public virtual ICollection<Class> Classes { get; set; }

@@ -8,6 +8,8 @@ namespace WebSchedule.BusinessLayer.Models
         [Key]
         public int Id { get; set; }
 
+        public string Password { get; set; }
+
         [Required]
         public virtual RoleDto Role { get; set; }
 
