@@ -1,3 +1,4 @@
+using System.IO;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebSchedule.DependenciesResolver;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 
 namespace WebSchedule.API
 {
@@ -33,6 +35,14 @@ namespace WebSchedule.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles(); 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+                RequestPath = "/wwwroot"
+            });
 
             app.UseRouting();
 

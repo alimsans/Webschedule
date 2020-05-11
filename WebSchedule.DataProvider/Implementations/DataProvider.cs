@@ -12,7 +12,8 @@ namespace WebSchedule.Infrastructure.Implementations
     {
         public override void Dispose()
         {
-            Console.WriteLine("kek");
+            Console.WriteLine("Context Disposed");
+            base.Dispose();
         }
 
         #region Dependecies
@@ -40,7 +41,20 @@ namespace WebSchedule.Infrastructure.Implementations
             _connectionString = connectionString.ConnectionString;
         }
 
-        public DataProvider() { }
+        internal DataProvider(DbContextOptions options)
+            : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Jwt)
+                .IsUnique();
+        }
 
         #endregion
 
@@ -82,9 +96,7 @@ namespace WebSchedule.Infrastructure.Implementations
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-#if DEBUG
             optionsBuilder.UseSqlServer(_connectionString);
-#endif
         }
 
         #endregion

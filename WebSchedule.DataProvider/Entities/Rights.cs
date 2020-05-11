@@ -1,6 +1,15 @@
-﻿namespace WebSchedule.Infrastructure.Entities
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace WebSchedule.Infrastructure.Entities
 {
-    public enum Rights
+    public class Rights
     {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(32)]
+        public string Name { get; set; }
     }
 }

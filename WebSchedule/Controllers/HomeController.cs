@@ -1,12 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebSchedule.BusinessLayer.Helpers.Extensions;
+using WebSchedule.BusinessLayer.Models;
 using WebSchedule.BusinessLayer.Services.Interfaces;
+using static WebSchedule.BusinessLayer.Helpers.Constants.StringConstants;
 
 namespace WebSchedule.API.Controllers
 {
     [Controller]
     [Route("[controller]")]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         #region Dependencies
 
@@ -14,23 +17,24 @@ namespace WebSchedule.API.Controllers
 
         #endregion
 
+
         #region .ctor
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService) 
+            : base(userService)
         {
             _userService = userService;
         }
 
         #endregion
 
+
         #region Controllers
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromHeader] string jwt)
         {
-            var users = await _userService.GetAllUsersAsync();
-
-            return Ok(users);
+            return await RespondWithPageAsync("index.html", jwt, Anonymous.ToRightsDto());
         }
 
         #endregion

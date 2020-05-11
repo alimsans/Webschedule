@@ -1,6 +1,9 @@
 ﻿namespace WebSchedule.BusinessLayer.Models
 {
-    public enum RightsDto
+    public class RightsDto
     {
+        public string Name { get; set; }
     }
+
+
 }

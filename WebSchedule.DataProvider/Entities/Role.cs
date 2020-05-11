@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebSchedule.Infrastructure.Entities
 {
@@ -12,8 +13,7 @@ namespace WebSchedule.Infrastructure.Entities
         [MaxLength(128)]
         public string Name { get; set; }
 
-        [Required]
-        public Rights Rights { get; set; }
+        public virtual ICollection<Rights> Rights { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
     }

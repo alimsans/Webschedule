@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebSchedule.Infrastructure.Entities
 {
@@ -12,5 +13,8 @@ namespace WebSchedule.Infrastructure.Entities
 
         [Required]
         public int Order { get; set; }
+
+        [Required]
+        public ICollection<Class> Classes { get; set; }
     }
 }

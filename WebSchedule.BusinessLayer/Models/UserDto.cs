@@ -13,6 +13,8 @@ namespace WebSchedule.BusinessLayer.Models
 
         public virtual ICollection<ClassDto> Classes { get; set; }
 
+        public virtual GroupDto Group { get; set; }
+
         [MaxLength(128)]
         public string Name { get; set; }
     }

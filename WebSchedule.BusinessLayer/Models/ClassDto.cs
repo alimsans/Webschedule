@@ -6,7 +6,7 @@ namespace WebSchedule.BusinessLayer.Models
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required]
         public virtual UserDto Teacher { get; set; }
 
@@ -20,6 +20,6 @@ namespace WebSchedule.BusinessLayer.Models
         public virtual ClassroomDto Classroom { get; set; }
 
         [Required]
-        public int Order { get; set; }
+        public virtual LessonDto Lesson { get; set; }
     }
 }

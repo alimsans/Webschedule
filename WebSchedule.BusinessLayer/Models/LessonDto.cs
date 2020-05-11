@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebSchedule.BusinessLayer.Models
 {
@@ -12,5 +13,8 @@ namespace WebSchedule.BusinessLayer.Models
 
         [Required]
         public int Order { get; set; }
+
+        [Required]
+        public ICollection<ClassDto> Classes { get; set; }
     }
 }

@@ -20,6 +20,6 @@ namespace WebSchedule.Infrastructure.Entities
         public virtual Classroom Classroom { get; set; }
 
         [Required]
-        public int Order { get; set; }
+        public virtual Lesson Lesson { get; set; }
     }
 }

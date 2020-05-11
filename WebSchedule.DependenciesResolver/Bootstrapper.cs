@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Reflection;
+using Autofac;
 using Microsoft.Extensions.Configuration;
 using WebSchedule.BusinessLayer.Services.Implementations;
 using WebSchedule.BusinessLayer.Services.Interfaces;
@@ -35,9 +36,9 @@ namespace WebSchedule.DependenciesResolver
         
         private static void InitializeBusinessLayer(ContainerBuilder builder, IConfiguration config)
         {
-            builder.RegisterType<UserService>()
-                .As<IUserService>()
-                .InstancePerDependency();
-        }        
+            builder.RegisterAssemblyTypes(typeof(IUserService).Assembly)
+                .PublicOnly()
+                .AsImplementedInterfaces();
+        }
     }
 }
